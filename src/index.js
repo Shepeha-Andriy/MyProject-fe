@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import App from './App';
 import './index.scss';
+import './utils/i18next'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-    <App />
-  </GoogleOAuthProvider>
+  <Suspense fallback={<div>Loading...</div>}>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
+      <App />
+    </GoogleOAuthProvider>
+  </Suspense>
 );

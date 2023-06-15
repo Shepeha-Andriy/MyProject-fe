@@ -1,8 +1,10 @@
 import React from 'react'
 import jwt_decode from 'jwt-decode'
 import { GoogleLogin } from '@react-oauth/google';
+import { useTranslation } from 'react-i18next';
 
 export default function Signup() {
+  const { t, i18n } = useTranslation();
 
   const testdispatch = (t) => {
     return t
@@ -29,7 +31,7 @@ export default function Signup() {
         <input type='email'></input>
         <input type='password'></input>
 
-        <button type='submit'>Sign Up</button>
+        <button type='submit'>{ t('sign_up') }</button>
       </form>
 
       <GoogleLogin
