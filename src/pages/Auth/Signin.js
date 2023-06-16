@@ -8,7 +8,7 @@ export default function Signin() {
   const { register, formState: { errors, isValid }, handleSubmit, reset } = useForm({
     mode: 'onBlur'
   })
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const testdispatch = (t) => {
     return t

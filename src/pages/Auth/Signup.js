@@ -8,24 +8,24 @@ export default function Signup() {
   const { register, formState: { errors, isValid }, handleSubmit, reset } = useForm({
     mode: 'onBlur'
   })
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const testdispatch = (t) => {
     return t
   }
 
-  const googleSuccess = (credential) => {
-    console.log(credential)
-    console.log(jwt_decode(credential.credential))
-    const decodedCredential = jwt_decode(credential.credential)
+  // const googleSuccess = (credential) => {
+  //   console.log(credential)
+  //   console.log(jwt_decode(credential.credential))
+  //   const decodedCredential = jwt_decode(credential.credential)
     
-    testdispatch({
-      username: decodedCredential.name,
-      email: decodedCredential.email,
-      googleId: decodedCredential.sub,
-      token: credential.credential
-    })
-  }
+  //   testdispatch({
+  //     username: decodedCredential.name,
+  //     email: decodedCredential.email,
+  //     googleId: decodedCredential.sub,
+  //     token: credential.credential
+  //   })
+  // }
 
   const handleSubmit2 = (data) => {
     try {
