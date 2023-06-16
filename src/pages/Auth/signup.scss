@@ -1,0 +1,50 @@
+.wraper {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+  &__username {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    &--item {
+      max-width: 195px;
+    }
+  }
+
+  &__label {
+    // margin-bottom: 15px;
+    // position: relative;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    padding: 0;
+    width: 400px;
+    height: 40px;
+  }
+
+  &__err {
+    margin-bottom: 10px;
+
+    &--l {
+      margin-bottom: 0;
+    }
+  }
+
+  &__btn {
+    width: 100px;
+    height: 40px;
+    margin-top: 20px;
+    margin-right: 35px;
+  }
+}
