@@ -1,3 +1,5 @@
+@import '../../utils//mixins';
+
 .iwraper {
   display: flex;
   justify-content: center;
@@ -12,9 +14,8 @@
   flex-direction: column;
   width: 400px;
 
-  &__lable {
-    // margin-bottom: 15px;
-    // position: relative;
+  @include onPhone {
+    width: 350px;
   }
 
   &__input {
@@ -22,6 +23,10 @@
     padding: 0;
     width: 400px;
     height: 40px;
+
+    @include onPhone {
+      width: 350px;
+    }
   }
 
   &__err {
@@ -37,6 +42,10 @@
     height: 40px;
     margin-top: 20px;
     margin-right: 15px;
+
+    @include onPhone {
+      width: 50px;
+    }
   }
 }
 

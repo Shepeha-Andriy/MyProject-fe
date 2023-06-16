@@ -5,7 +5,7 @@ const api = axios.create({
 })
 
 api.interceptors.request.use((config) => {
-  config.headers.Authorization = window.localStorage.getItem('token')
+  config.headers.Authorization = window.localStorage.getItem('profile').token
 
   return config
 })

@@ -1,3 +1,5 @@
+@import '../../utils/mixins';
+
 .wraper {
   display: flex;
     justify-content: center;
@@ -11,6 +13,10 @@
   flex-direction: column;
   width: 400px;
 
+  @include onPhone {
+    width: 350px;
+  } 
+
   &__username {
     display: flex;
     flex-direction: row;
@@ -18,6 +24,10 @@
 
     &--item {
       max-width: 195px;
+    
+      @include onPhone {
+        max-width: 170px;
+      }
     }
   }
 
@@ -31,6 +41,10 @@
     padding: 0;
     width: 400px;
     height: 40px;
+
+    @include onPhone {
+      width: 350px;
+    }
   }
 
   &__err {
@@ -46,5 +60,9 @@
     height: 40px;
     margin-top: 20px;
     margin-right: 35px;
+
+    @include onPhone {
+      width: 50px;
+    }
   }
 }
