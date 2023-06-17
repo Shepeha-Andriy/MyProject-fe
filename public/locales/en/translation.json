@@ -1,4 +1,24 @@
 {
   "sign_in": "Sign In",
-  "sign_up": "Sign Up"
+  "sign_up": "Sign Up",
+  "dont_have_acc": "Don't have an account?",
+  "have_acc": "Already have an account?",
+  "create_acc": " Create account",
+  "login": " Login",
+  "password": "Password",
+  "confirm_password": "Confirm Password",
+  "email": "Email",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "email_is_r": "email is required",
+  "password_is_r": "password is required",
+  "passwordc_is_r": "password confirmation is required",
+  "first_name_is_r": "first name is required",
+  "last_name_is_r": "last name is required",
+  "min_length": "min length is {{length}}",
+  "fn_only_l": "first name must contain only latters",
+  "ln_only_l": "last name must contain only latters",
+  "pass_valid": "password must contain at least one capital letter and one number",
+  "pass_d_match": "passwords do not match",
+  "signup_success": "Sign Up Success, please check mail for verification"
 }

@@ -4,7 +4,7 @@ import api from '../api'
 const initialState = {
   user: JSON.parse(localStorage.getItem('profile'))?.user || null,
   token: JSON.parse(localStorage.getItem('profile'))?.token || null,
-  message: '',
+  message: null,
   isLoading: false
 }
 
@@ -57,13 +57,15 @@ const userSlice = createSlice({
       (action) => action.type === userSignUp.pending.type,
       (state) => {
         state.isLoading = true
-        state.message = ''
+        state.message = null
       }
     )
     .addMatcher(
       (action) => action.type === userSignUp.fulfilled.type,
       (state, action) => {
         localStorage.setItem('profile', JSON.stringify(action.payload.data))
+        state.user = action.payload.data.user
+        state.token = action.payload.data.token
         state.isLoading = false
       }
     )
@@ -79,13 +81,15 @@ const userSlice = createSlice({
       (action) => action.type === userSignIn.pending.type,
       (state) => {
         state.isLoading = true
-        state.message = ''
+        state.message = null
       }
     )
     .addMatcher(
       (action) => action.type === userSignIn.fulfilled.type,
       (state, action) => {
         localStorage.setItem('profile', JSON.stringify(action.payload.data))
+        state.user = action.payload.data.user
+        state.token = action.payload.data.token
         state.isLoading = false
       }
     )
@@ -101,13 +105,15 @@ const userSlice = createSlice({
       (action) => action.type === userGoogleAuth.pending.type,
       (state) => {
         state.isLoading = true
-        state.message = ''
+        state.message = null
       }
     )
     .addMatcher(
       (action) => action.type === userGoogleAuth.fulfilled.type,
       (state, action) => {
         localStorage.setItem('profile', JSON.stringify(action.payload.data))
+        state.user = action.payload.data.user
+        state.token = action.payload.data.token
         state.isLoading = false
       }
     )

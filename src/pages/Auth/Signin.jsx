@@ -27,12 +27,16 @@ export default function Signin() {
     }))
   }
 
-  const handleSignIn = (data) => {
+  const handleSignIn = async (data) => {
     try {
       const { email, password } = data
-      dispatch(userSignIn({ email, password }))
+      const res = await dispatch(userSignIn({ email, password }))
       toast.error(message)
-      // reset()
+
+      if (res?.payload?.data?.token) {
+        reset()
+        navigate('/')
+      }
     } catch (error) {
       console.log(error)
     }
@@ -44,9 +48,8 @@ export default function Signin() {
 
         <label className="iform__label">
           {/* Email: */}
-          <input placeholder="Email" type='email' {...register('email', {
-            required: 'email is required',
-            // minLength: {value: 5, message: 'min length is 5'}
+          <input placeholder={t('email')} type='email' {...register('email', {
+            required: t('email_is_r'),
           })}
             className="iform__input"
             style={errors?.email ? {marginTop: '0'} : {marginBottom: '20px'}}
@@ -58,9 +61,9 @@ export default function Signin() {
 
         <label className="iform__label">
           {/* Password: */}
-          <input placeholder="Password" type='password' {...register('password', {
-            required: 'password is required',
-            minLength: {value: 1, message: 'min length is 4'}
+          <input placeholder={t('password')} type='password' {...register('password', {
+            required: t('password_is_r'),
+            minLength: {value: 6, message: t('min_length', {length: 6})}
           })}
             className="iform__input"
             style={errors?.password ? {marginTop: '0'} : {marginBottom: '20px'}}
@@ -72,7 +75,7 @@ export default function Signin() {
 
         <div>
           <button type='submit' onClick={handleSubmit(handleSignIn)} className='iform__btn'>{t('sign_in')}</button>
-          <span>Don't have an account?<Link to={'/signup'}> Create account</Link></span>
+          <span>{t('dont_have_acc')}<Link to={'/signup'} style={{textDecoration: 'none', color: 'green'}}>{ t('create_acc') }</Link></span>
         </div>
       </form>
 

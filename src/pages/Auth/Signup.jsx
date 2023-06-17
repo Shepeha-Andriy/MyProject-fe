@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify';
 import { userSignUp } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './signup.scss'
 
 export default function Signup() {
@@ -13,6 +13,7 @@ export default function Signup() {
   const { t } = useTranslation();
   const { user, message } = useSelector(state => state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleSignUp = async (data) => {
     try {
@@ -23,6 +24,7 @@ export default function Signup() {
       if (res?.payload?.data?.token) {
         reset()
         setIsCreated(true)
+        navigate('/')
       }
     } catch (error) {
       console.log(error)
@@ -33,7 +35,7 @@ const validatePassword = (value) => {
   const confirmPassword = getValues('password');
 
   if (value !== confirmPassword) {
-    return  'Passwords do not match';
+    return t('pass_d_match');
   }
   return true;
 };
@@ -44,7 +46,7 @@ const validatePassword = (value) => {
       {
         isCreated && (
           <div className='signup__success'>
-            <span>Sign Up Success, check mail for verification</span>
+            <span>{ t('signup_success') }</span>
           </div>
         )
       }
@@ -52,9 +54,9 @@ const validatePassword = (value) => {
       <form onSubmit={e => e.preventDefault()} className="form">
         <div className='form__username'>
           <label className="form__label form__username--item">
-            <input placeholder="First Name" {...register('firstname', {
-              required: 'first name is required',
-              pattern: {value: /^[A-Za-z]+$/, message: 'first name must contain only latters'}
+            <input placeholder={t('first_name')} {...register('firstname', {
+              required: t('first_name_is_r'),
+              pattern: {value: /^[A-Za-z]+$/, message: t('fn_only_l')}
             })}
               className="form__input form__username--item"
               style={errors?.firstname ? {marginTop: '0'} : {marginBottom: '20px'}}
@@ -65,9 +67,9 @@ const validatePassword = (value) => {
           </label>
           
           <label className="form__label form__username--item">
-            <input placeholder="Last Name" {...register('lastname', {
-              required: 'last name is required',
-              pattern: {value: /^[A-Za-z]+$/, message: 'last name must contain only latters'}
+            <input placeholder={t('last_name')} {...register('lastname', {
+              required: t('last_name_is_r'),
+              pattern: {value: /^[A-Za-z]+$/, message: t('ln_only_l')}
             })}
               className="form__input form__username--item"
               style={errors?.lastname ? {marginTop: '0'} : {marginBottom: '20px'}}
@@ -79,8 +81,8 @@ const validatePassword = (value) => {
         </div>
 
         <label className="form__label">
-          <input placeholder="Email" type='email' {...register('email', {
-            required: 'email is required',
+          <input placeholder={t('email')} type='email' {...register('email', {
+            required: t('email_is_r'),
           })}
             className="form__input"
             style={errors?.email ? {marginTop: '0'} : {marginBottom: '20px'}}
@@ -91,10 +93,10 @@ const validatePassword = (value) => {
         </label>
 
         <label className="form__label">
-          <input placeholder="Password" type='password' {...register('password', {
-            required: 'password is required',
-            minLength: { value: 6, message: 'min length is 6' },
-            pattern: {value: /^(?=.*[A-Z])(?=.*\d).+$/, message: 'password must contain at least one capital letter and one number'},
+          <input placeholder={t('password')} type='password' {...register('password', {
+            required: t('password_is_r'),
+            minLength: { value: 6, message: t('min_length', {length: 6}) },
+            pattern: {value: /^(?=.*[A-Z])(?=.*\d).+$/, message: t('pass_valid')},
           })}
             className="form__input"
             style={errors?.password ? {marginTop: '0'} : { marginBottom: '20px'}}
@@ -105,9 +107,9 @@ const validatePassword = (value) => {
         </label>
 
         <label className="form__label">
-          <input placeholder="Confirm Password" type='password' {...register('confirmpassword', {
-            required: 'password confirmation is required',
-            minLength: { value: 6, message: 'min length is 6' },
+          <input placeholder={t('confirm_password')} type='password' {...register('confirmpassword', {
+            required: t('passwordc_is_r'),
+            minLength: { value: 6, message: t('min_length', {length: 6}) },
             validate: validatePassword
           })}
             className="form__input"
@@ -120,7 +122,7 @@ const validatePassword = (value) => {
 
         <div>
           <button type='submit' onClick={handleSubmit(handleSignUp)} className='form__btn'>{t('sign_up')}</button>
-          <span>Already have an account?<Link to={'/signin'}> Login</Link></span>
+          <span>{t('have_acc')}<Link to={'/signin'} style={{textDecoration: 'none', color: 'green'}}>{ t('login') }</Link></span>
         </div>
       </form>
 
