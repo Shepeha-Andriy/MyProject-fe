@@ -2,10 +2,22 @@
 
 .wraper {
   display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.signup__success {
+  background-color: green;
+  color: white;
+  width: 400px;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
@@ -42,6 +54,7 @@
     width: 400px;
     height: 40px;
     padding-left: 10px;
+    
 
     @include onPhone {
       width: 350px;

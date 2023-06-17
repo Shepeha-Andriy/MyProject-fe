@@ -8,9 +8,9 @@ const initialState = {
   isLoading: false
 }
 
-export const userSignUp = createAsyncThunk('/auth/signup', async ({ firstname, lastname, email, password }, { rejectWithValue }) => {
+export const userSignUp = createAsyncThunk('/auth/signup', async ({ firstname, lastname, email, password, confirmpassword }, { rejectWithValue }) => {
   try {
-    const { data } = await api.post('/auth/signup', { firstname, lastname, email, password })
+    const { data } = await api.post('/auth/signup', { firstname, lastname, email, password, confirmpassword })
 
     return data
   } catch (error) {
@@ -57,6 +57,7 @@ const userSlice = createSlice({
       (action) => action.type === userSignUp.pending.type,
       (state) => {
         state.isLoading = true
+        state.message = ''
       }
     )
     .addMatcher(
@@ -78,6 +79,7 @@ const userSlice = createSlice({
       (action) => action.type === userSignIn.pending.type,
       (state) => {
         state.isLoading = true
+        state.message = ''
       }
     )
     .addMatcher(
@@ -99,6 +101,7 @@ const userSlice = createSlice({
       (action) => action.type === userGoogleAuth.pending.type,
       (state) => {
         state.isLoading = true
+        state.message = ''
       }
     )
     .addMatcher(

@@ -1,25 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify';
 import { userSignUp } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './signup.scss'
 
 export default function Signup() {
+  const [isCreated, setIsCreated] = useState(false)
   const { register, formState: { errors, isValid }, handleSubmit, getValues, reset } = useForm({mode: 'onSubmit'})
   const { t } = useTranslation();
   const { user, message } = useSelector(state => state.user)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
-  const handleSignUp = (data) => {
+  const handleSignUp = async (data) => {
     try {
       const { firstname, lastname, email, password, confirmpassword } = data
-      dispatch(userSignUp({ firstname, lastname, email, password }))
+      const res = await dispatch(userSignUp({ firstname, lastname, email, password, confirmpassword }))
       toast.error(message)
-      // reset()
+      
+      if (res?.payload?.data?.token) {
+        reset()
+        setIsCreated(true)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -35,11 +39,19 @@ const validatePassword = (value) => {
 };
 
   return (
-    <div className='wraper'>
+    <div className='wraper' onClick={() => setIsCreated(false)}>
+      
+      {
+        isCreated && (
+          <div className='signup__success'>
+            <span>Sign Up Success, check mail for verification</span>
+          </div>
+        )
+      }
+
       <form onSubmit={e => e.preventDefault()} className="form">
         <div className='form__username'>
           <label className="form__label form__username--item">
-            {/* First Name: */}
             <input placeholder="First Name" {...register('firstname', {
               required: 'first name is required',
               pattern: {value: /^[A-Za-z]+$/, message: 'first name must contain only latters'}
@@ -53,7 +65,6 @@ const validatePassword = (value) => {
           </label>
           
           <label className="form__label form__username--item">
-            {/* Last Name: */}
             <input placeholder="Last Name" {...register('lastname', {
               required: 'last name is required',
               pattern: {value: /^[A-Za-z]+$/, message: 'last name must contain only latters'}
@@ -68,10 +79,8 @@ const validatePassword = (value) => {
         </div>
 
         <label className="form__label">
-          {/* Email: */}
           <input placeholder="Email" type='email' {...register('email', {
             required: 'email is required',
-            // minLength: {value: 5, message: 'min length is 5'}
           })}
             className="form__input"
             style={errors?.email ? {marginTop: '0'} : {marginBottom: '20px'}}
@@ -82,7 +91,6 @@ const validatePassword = (value) => {
         </label>
 
         <label className="form__label">
-          {/* Password: */}
           <input placeholder="Password" type='password' {...register('password', {
             required: 'password is required',
             minLength: { value: 6, message: 'min length is 6' },
@@ -97,7 +105,6 @@ const validatePassword = (value) => {
         </label>
 
         <label className="form__label">
-          {/* Password: */}
           <input placeholder="Confirm Password" type='password' {...register('confirmpassword', {
             required: 'password confirmation is required',
             minLength: { value: 6, message: 'min length is 6' },
