@@ -8,6 +8,12 @@
   height: 100vh;
 }
 
+.toHome {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 .signup__success {
   background-color: green;
   color: white;

@@ -1,0 +1,22 @@
+.navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.dropdown {
+  position: relative;
+
+  &__list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  &__item {
+    list-style: none;
+    text-decoration: none;
+  }
+}

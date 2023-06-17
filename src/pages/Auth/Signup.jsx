@@ -42,7 +42,7 @@ const validatePassword = (value) => {
 
   return (
     <div className='wraper' onClick={() => setIsCreated(false)}>
-      
+      <div className='toHome'> <Link to={'/'} style={{textDecoration: 'none', color: 'green'}}>Home</Link></div>
       {
         isCreated && (
           <div className='signup__success'>

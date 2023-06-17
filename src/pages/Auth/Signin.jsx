@@ -25,6 +25,8 @@ export default function Signin() {
       googleId: decodedCredential.sub,
       token: credential.credential
     }))
+
+    navigate('/')
   }
 
   const handleSignIn = async (data) => {
@@ -45,6 +47,8 @@ export default function Signin() {
   return (
     <div className='iwraper'>
       <form onSubmit={e => e.preventDefault()} className="iform">
+
+        <div className='itoHome'> <Link to={'/'} style={{textDecoration: 'none', color: 'green'}}>Home</Link></div>
 
         <label className="iform__label">
           {/* Email: */}

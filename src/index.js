@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import App from './App';
 import { Provider } from 'react-redux';
@@ -13,7 +14,9 @@ root.render(
   <Suspense fallback={<div>Loading...</div>}>
     <Provider store={store}>
       <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-        <App />
+        <BrowserRouter>
+          <App></App>
+        </BrowserRouter>
       </GoogleOAuthProvider>
     </Provider>
   </Suspense>
