@@ -3,15 +3,18 @@ import jwt_decode from 'jwt-decode'
 import { GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { userSignIn, userGoogleAuth } from '../../redux/slices/userSlice'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './signin.scss'
 
 export default function Signin() {
-  const { register, formState: { errors, isValid }, handleSubmit, reset } = useForm({mode: 'onBlur'})
+  const { register, formState: { errors, isValid }, handleSubmit, reset } = useForm({mode: 'onSubmit'})
   const { t } = useTranslation();
+  const { user, message } = useSelector(state => state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const googleSuccess = (credential) => {
     const decodedCredential = jwt_decode(credential.credential)
@@ -28,7 +31,8 @@ export default function Signin() {
     try {
       const { email, password } = data
       dispatch(userSignIn({ email, password }))
-      reset()
+      toast.error(message)
+      // reset()
     } catch (error) {
       console.log(error)
     }
@@ -45,9 +49,9 @@ export default function Signin() {
             // minLength: {value: 5, message: 'min length is 5'}
           })}
             className="iform__input"
-            style={errors?.email ? {marginTop: '0'} : {marginTop: '20px'}}
+            style={errors?.email ? {marginTop: '0'} : {marginBottom: '20px'}}
           ></input>
-          <div style={{marginTop: '3px'}}>
+          <div>
             {errors?.email && <p className='iform__err'>{ errors?.email?.message }</p>}
           </div>
         </label>
@@ -59,9 +63,9 @@ export default function Signin() {
             minLength: {value: 1, message: 'min length is 4'}
           })}
             className="iform__input"
-            style={errors?.password ? {marginTop: '0'} : {marginTop: '20px'}}
+            style={errors?.password ? {marginTop: '0'} : {marginBottom: '20px'}}
           ></input>
-          <div style={{marginTop: '3px'}}>
+          <div>
             {errors?.password && <p className='iform__err iform__err--l'>{ errors?.password?.message }</p>}
           </div>
         </label>

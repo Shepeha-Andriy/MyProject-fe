@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { gapi } from "gapi-script";
 import './App.scss';
 import Home from './pages/Home/Home';
@@ -20,6 +22,7 @@ function App() {
         <Route path='/signin' element={<Signin></Signin>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </BrowserRouter>
   );
 }
