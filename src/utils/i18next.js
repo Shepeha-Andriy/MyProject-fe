@@ -17,17 +17,3 @@ i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
 })
 
 export default i18n
-
-// toggler for lang change
-// import { useTranslation } from 'react-i18next';
-// const { t, i18n } = useTranslation();
-// const changeLanguage = (language) => {
-//   i18n.changeLanguage(language);
-// };
-// {
-//   <div>
-//     <span onClick={() => changeLanguage('ua')}>ua</span>
-//     <span>/</span>
-//     <span onClick={() => changeLanguage('en')}>en</span>
-//   </div>
-// }

@@ -1,22 +1,51 @@
 .navigation {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 15px;
+}
+
+.leng {
+  display: flex;
+  gap: 10px;
+
+  &__flag {
+    cursor: pointer;
+  }
 }
 
 .dropdown {
   position: relative;
+  display: flex;
+  justify-content: center;
+
+  &__toggle {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
 
   &__list {
     position: absolute;
     top: 100%;
     left: 0;
     background-color: #f1f1f1;
-    padding: 10px;
     border-radius: 4px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   &__item {
     list-style: none;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
   }
 }
