@@ -1,0 +1,17 @@
+.theme {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  &__icon {
+    cursor: pointer;
+
+    &--sun {
+      color: yellow;
+    }
+
+    &--moon {
+      color: #1a4a7a;
+    }
+  }
+}

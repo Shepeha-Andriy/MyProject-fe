@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { userSignIn, userGoogleAuth } from '../../redux/slices/userSlice'
 import { Link, useNavigate } from 'react-router-dom';
 import { checkTheme } from '../../components/DarkMode/DarkMode';
+import { FaHome } from "react-icons/fa";
 import './signin.scss'
 
 export default function Signin() {
@@ -51,7 +52,7 @@ export default function Signin() {
     <div className='iwraper'>
       <form onSubmit={e => e.preventDefault()} className="iform">
 
-        <div className='itoHome'> <Link to={'/'} style={{textDecoration: 'none', color: 'green'}}>Home</Link></div>
+        <div className='itoHome'><FaHome onClick={() => navigate('/')} size={'30px'} style={{cursor: 'pointer'}}></FaHome></div>
 
         <label className="iform__label">
           {/* Email: */}
@@ -80,7 +81,7 @@ export default function Signin() {
           </div>
         </label>
 
-        <div>
+        <div className='iform__btn--wraper'>
           <button type='submit' onClick={handleSubmit(handleSignIn)} className='iform__btn'>{t('sign_in')}</button>
           <span>{t('dont_have_acc')}<Link to={'/signup'} style={{textDecoration: 'none', color: 'green'}}>{ t('create_acc') }</Link></span>
         </div>

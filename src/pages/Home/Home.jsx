@@ -1,12 +1,15 @@
 import React from 'react'
-import DarkMode from '../../components/DarkMode/DarkMode'
+import { useTranslation } from 'react-i18next';
+import { checkTheme } from '../../components/DarkMode/DarkMode'
 
 export default function Home() {
+  const { t } = useTranslation();
+
+  checkTheme()
+
   return (
     <div>
-      Home
-
-      <DarkMode></DarkMode>
+      {t('sign_in')}
     </div>
   )
 }

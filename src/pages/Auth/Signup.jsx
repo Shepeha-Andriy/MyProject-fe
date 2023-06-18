@@ -6,6 +6,7 @@ import { userSignUp } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { checkTheme } from '../../components/DarkMode/DarkMode';
+import { FaHome } from "react-icons/fa";
 import './signup.scss'
 
 export default function Signup() {
@@ -45,7 +46,7 @@ export default function Signup() {
 
   return (
     <div className='wraper' onClick={() => setIsCreated(false)}>
-      <div className='toHome'> <Link to={'/'} style={{textDecoration: 'none', color: 'green'}}>Home</Link></div>
+      <div className='toHome'><FaHome onClick={() => navigate('/')} size={'30px'} style={{cursor: 'pointer'}}></FaHome></div>
       {
         isCreated && (
           <div className='signup__success'>

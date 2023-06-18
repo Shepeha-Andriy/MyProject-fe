@@ -41,6 +41,7 @@
   &__err {
     margin-bottom: 10px;
     font-size: 14px;
+    color: red;
 
     // &--l {
     //   margin-bottom: 0;
@@ -54,9 +55,19 @@
     margin-right: 15px;
     color: var(--button_c);
     background-color: var(--button_bc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @include onPhone {
       width: 50px;
+    }
+
+    &--wraper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      // justify-content:;
     }
   }
 }

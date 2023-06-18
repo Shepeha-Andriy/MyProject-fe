@@ -71,6 +71,7 @@
   &__err {
     margin-bottom: 10px;
     font-size: 14px;
+    color: red;
 
     &--l {
       // margin-bottom: 0;
@@ -78,15 +79,17 @@
   }
 
   &__btn {
-    width: 100px;
+    width: 130px;
     height: 40px;
     margin-top: 5px;
-    margin-right: 35px;
+    margin-right: 25px;
     color: var(--button_c);
     background-color: var(--button_bc);
 
+
     @include onPhone {
-      width: 50px;
+      width: 100px;
+      margin-right: 15px;
     }
   }
 }

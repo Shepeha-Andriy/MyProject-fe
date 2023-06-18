@@ -1,4 +1,6 @@
 import React from 'react'
+import { FaMoon, FaSun } from "react-icons/fa";
+import './darkmode.scss'
 
 export const checkTheme = () => {
   const savedTheme = localStorage.getItem('theme');
@@ -23,9 +25,9 @@ export default function DarkMode() {
   }
 
   return (
-    <div>
-      <div onClick={dark} style={{color: 'green'}}>dark</div>
-      <div onClick={light} style={{color: 'green'}}>light</div>
+    <div className='theme'>
+      <div><FaSun className='theme__icon theme__icon--sun' onClick={light}></FaSun></div>
+      <div><FaMoon className='theme__icon theme__icon--moon' onClick={dark}></FaMoon></div>
     </div>
   )
 }
