@@ -11,7 +11,7 @@ import './utils/i18next'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Suspense fallback={<div>Loading...</div>}>
+  // <Suspense fallback={<div>Loading...</div>}>
     <Provider store={store}>
       <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
         <BrowserRouter>
@@ -19,5 +19,5 @@ root.render(
         </BrowserRouter>
       </GoogleOAuthProvider>
     </Provider>
-  </Suspense>
+  // </Suspense>
 );

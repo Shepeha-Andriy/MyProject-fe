@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { userSignUp } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { checkTheme } from '../../components/DarkMode/DarkMode';
 import './signup.scss'
 
 export default function Signup() {
@@ -31,14 +32,16 @@ export default function Signup() {
     }
   }
 
-const validatePassword = (value) => {
-  const confirmPassword = getValues('password');
+  const validatePassword = (value) => {
+    const confirmPassword = getValues('password');
 
-  if (value !== confirmPassword) {
-    return t('pass_d_match');
-  }
-  return true;
-};
+    if (value !== confirmPassword) {
+      return t('pass_d_match');
+    }
+    return true;
+  };
+  
+  checkTheme()
 
   return (
     <div className='wraper' onClick={() => setIsCreated(false)}>

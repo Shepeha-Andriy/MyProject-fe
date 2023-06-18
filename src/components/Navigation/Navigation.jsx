@@ -51,7 +51,7 @@ export default function Navigation() {
               <ul className='dropdown__list'>
                 <li className='dropdown__item'>Пункт 1</li>
                 <li className='dropdown__item'>Пункт 2</li>
-                <li className='dropdown__item' onClick={handleLogout} style={{ textDecoration: 'none', color: 'green', cursor: 'pointer'}}>Logout</li>
+                <li className='dropdown__item' onClick={handleLogout} style={{ textDecoration: 'none', cursor: 'pointer'}}>Logout</li>
               </ul>
             ) 
           ) : (
@@ -59,7 +59,7 @@ export default function Navigation() {
               <ul className='dropdown__list'>
                 <li className='dropdown__item'>Пункт 1</li>
                 <li className='dropdown__item'>Пункт 2</li>
-                  <li className='dropdown__item'> <Link to={'/signin'} style={{ textDecoration: 'none', color: 'green', cursor: 'pointer'}}>Login</Link></li>
+                <li className='dropdown__item' style={{ cursor: 'pointer'}} onClick={() => navigate('/signin')}>Login</li>
               </ul>
             )
           )

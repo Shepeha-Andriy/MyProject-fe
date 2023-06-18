@@ -60,7 +60,8 @@
     width: 400px;
     height: 40px;
     padding-left: 10px;
-    
+    color: var(--input_c);
+    background-color: var(--input_bc);
 
     @include onPhone {
       width: 350px;
@@ -81,6 +82,8 @@
     height: 40px;
     margin-top: 5px;
     margin-right: 35px;
+    color: var(--button_c);
+    background-color: var(--button_bc);
 
     @include onPhone {
       width: 50px;

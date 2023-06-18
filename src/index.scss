@@ -1,9 +1,22 @@
 :root {
   --back_ground: white;
+  --green_c: green;
+  --dropdown_nav: #f1f1f1;
+  --input_c: black;
+  --input_bc: white;
+  --button_c: black;
+  --button_bc: white;
 }
 
 [data-theme="dark"] {
-  --back_ground: black;
+  --back_ground: #181a1b;
+  color: #e8e6e3;
+  --green_c: #72ff72;
+  --dropdown_nav: #202324;
+  --input_c: white;
+  --input_bc: #3b3b3b;
+  --button_c: #fff;
+  --button_bc: #6b6b6b;
 }
 
 body {

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { userSignIn, userGoogleAuth } from '../../redux/slices/userSlice'
 import { Link, useNavigate } from 'react-router-dom';
+import { checkTheme } from '../../components/DarkMode/DarkMode';
 import './signin.scss'
 
 export default function Signin() {
@@ -43,6 +44,8 @@ export default function Signin() {
       console.log(error)
     }
   }
+
+  checkTheme()
 
   return (
     <div className='iwraper'>

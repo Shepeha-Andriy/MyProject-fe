@@ -1,10 +1,16 @@
 import React from 'react'
 
-export default function DarkMode() {
+export const checkTheme = () => {
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
     document.documentElement.setAttribute('data-theme', savedTheme);
   }
+
+  return savedTheme
+}
+
+export default function DarkMode() {
+  checkTheme()
 
   const dark = () => {
     document.documentElement.setAttribute('data-theme', 'dark');

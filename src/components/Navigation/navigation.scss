@@ -31,7 +31,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #f1f1f1;
+    background-color: var(--dropdown_nav);
     border-radius: 4px;
     width: 100px;
     display: flex;
@@ -39,13 +39,17 @@
     flex-direction: column;
     padding-top: 5px;
     padding-bottom: 5px;
+    cursor: 'pointer';
   }
 
   &__item {
     list-style: none;
     text-decoration: none;
+    list-style: none;
+    cursor: 'pointer';
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
+    color: var(--green_c);
   }
 }
