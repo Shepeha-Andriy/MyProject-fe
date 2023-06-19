@@ -10,14 +10,10 @@ import DarkMode from '../DarkMode/DarkMode';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { user } = useSelector(state => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const changeLanguage = (language) => {
-    i18n.changeLanguage(language);
-  };
 
   const handleMouseEnter = () => {
     setIsOpen(true);
