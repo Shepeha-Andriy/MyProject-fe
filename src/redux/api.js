@@ -6,6 +6,7 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   config.headers.Authorization = window.localStorage.getItem('profile')?.token
+  config.headers.lang = window.localStorage.getItem('i18nextLng') || 'en'
 
   return config
 })
