@@ -1,49 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import './navigation.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../redux/slices/userSlice';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaUser } from "react-icons/fa";
-import LengTogler from '../LengToggler/LengTogler';
-import DarkMode from '../DarkMode/DarkMode';
+import { useNavigate } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
+import { HiOutlineMenu } from "react-icons/hi";
+import DropDown from './DropDown';
+import Menu from './Menu';
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isP, setIsP] = useState(false)
   const { t } = useTranslation();
   const { user } = useSelector(state => state.user)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
 
-  const handleMouseEnter = () => {
-    setIsOpen(true);
-  };
+  useEffect(() => {
+    if (window.innerWidth < 480) {
+      setIsP(true);
+    }
 
-  const handleMouseLeave = () => {
-    setIsOpen(false);
-  };
+    const handleResize = () => {
+      if (window.innerWidth < 480) {
+        setIsP(true);
+      } else {
+        setIsP(false)
+        setIsOpenMenu(false)
+      }
+    };
 
-  const handleLogout = () => {
-    dispatch(logout())
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [])
+
+  if (isOpenMenu) {
+    return <Menu setIsOpenMenu={setIsOpenMenu}></Menu>
   }
 
   return (
     <div className='navigation'>
-      Navigation
-
-      <div className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <div className="dropdown__toggle"><FaUser size={'30px'}></FaUser> </div>
-        {
-          isOpen && (
-            <ul className='dropdown__list'>
-              <li className='dropdown__item'><DarkMode></DarkMode></li>
-              <li className='dropdown__item'><LengTogler></LengTogler></li>
-              {user && <li className='dropdown__item' onClick={handleLogout} style={{ textDecoration: 'none', cursor: 'pointer' }}>Logout</li>}
-              {!user && <li className='dropdown__item' style={{ cursor: 'pointer'}} onClick={() => navigate('/signin')}>Login</li>}
-            </ul>
-          ) 
-        }
-      </div>
+      {
+        !isP
+          ?
+            (<ul className='navigation__list'>
+              <li className='navigation__item'></li>
+              <li className='navigation__item'><FaShoppingCart size={'30px'}></FaShoppingCart></li>
+              <li className='navigation__item'><DropDown></DropDown></li>
+            </ul>)
+          : <div className='menu__open' onClick={() => setIsOpenMenu(true)}><HiOutlineMenu size={'30px'}></HiOutlineMenu></div>
+      }
     </div>
   )
 }

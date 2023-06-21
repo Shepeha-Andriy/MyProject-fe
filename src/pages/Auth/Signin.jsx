@@ -93,6 +93,7 @@ export default function Signin() {
           onError={() => {
             console.log('Login Failed');
           }}
+          
           // theme='filled_black'
         >
         </GoogleLogin>

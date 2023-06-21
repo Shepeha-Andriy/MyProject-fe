@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-import './lengtoggler.scss'
+import './langtoggler.scss'
 
-export default function LengTogler() {
+export default function LangTogler() {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (language) => {
