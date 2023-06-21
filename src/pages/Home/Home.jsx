@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { checkTheme } from '../../components/DarkMode/DarkMode'
+import Categories from './Categories';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <div>
       {t('sign_in')}
+      <Categories></Categories>
     </div>
   )
 }

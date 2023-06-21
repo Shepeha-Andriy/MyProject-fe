@@ -1,0 +1,23 @@
+.categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+
+  .categorie {
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &__name {
+    position: relative;
+
+    top: 80%;
+    margin-left: 20px;
+    font-size: 18px;
+    color:black;
+  }
+}
