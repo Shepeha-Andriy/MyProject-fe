@@ -13,6 +13,7 @@ export default function Navigation() {
   const [isP, setIsP] = useState(false)
   const { t } = useTranslation();
   const { user } = useSelector(state => state.user)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (window.innerWidth < 480) {
@@ -46,7 +47,7 @@ export default function Navigation() {
           ?
             (<ul className='navigation__list'>
               <li className='navigation__item'></li>
-              <li className='navigation__item'><FaShoppingCart size={'30px'}></FaShoppingCart></li>
+              <li className='navigation__item'><FaShoppingCart size={'30px'} onClick={() => navigate('/cart')} style={{cursor: 'pointer'}}></FaShoppingCart></li>
               <li className='navigation__item'><DropDown></DropDown></li>
             </ul>)
           : <div className='menu__open' onClick={() => setIsOpenMenu(true)}><HiOutlineMenu size={'30px'}></HiOutlineMenu></div>

@@ -1,0 +1,69 @@
+.goodcard {
+  height: 300px;
+  width: 250px;
+  box-sizing: border-box;
+  padding-bottom: 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  transition: 0.3s;
+  border-bottom: 1px solid rgb(197, 197, 197);
+  opacity: 1;
+  color: var(--color_card);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &__img {
+    width: 100%;
+    height: 160px;
+    border-radius: 10px;
+
+    &--wraper {
+      width: 100%;
+      height: 160px;
+      border-radius: 10px;
+    }
+  }
+
+  &__name {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__description {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 10px;
+    margin: 5px 0;
+  }
+
+  &__footer {
+  display: flex;
+    justify-content: space-around;
+  }
+
+  &__views {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    gap: 3px;
+  }
+
+  &__cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    align-self: center;
+  }
+}

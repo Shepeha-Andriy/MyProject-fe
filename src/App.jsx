@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import Header from './components/Header/Header';
 import Phones from './pages/Categories/Phones/Phones';
 import Footer from './components/Footer/Footer';
+import Cart from './pages/Cart/Cart';
 
 // gapi.load("client:auth2", () => {
 //   gapi.client.init({
@@ -25,7 +26,7 @@ function App() {
   const shouldHideHeaderAndFooter = ['/signup', '/signin'].includes(pathname);
 
   return (
-    <div>
+    <div className='app'>
       {!shouldHideHeaderAndFooter && <Header></Header>}
 
       <Routes>
@@ -44,6 +45,8 @@ function App() {
         <Route path='/category/clothes' element={<Phones></Phones>}></Route>
         <Route path='/category/instruments' element={<Phones></Phones>}></Route>
         <Route path='/category/other' element={<Phones></Phones>}></Route>
+
+        <Route path='/cart' element={<Cart></Cart>}></Route>
         <Route path='*' element={<Home></Home>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>

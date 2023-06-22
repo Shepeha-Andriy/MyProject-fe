@@ -3,6 +3,7 @@ import { checkTheme } from '../../components/DarkMode/DarkMode'
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import './home.scss'
+import { Link } from 'react-router-dom';
 
 export default function Categories() {
   const [isP, setIsP] = useState(false)
@@ -33,11 +34,13 @@ export default function Categories() {
   const items = categories.map((categorie) => {
     const img = categorie.photo
     return (
-      <div className='categories__carousel' key={categorie.name} style={{ background: `url(${img}) no-repeat`, backgroundSize: 'cover', height: '200px', width: '300px', backgroundPosition: 'center' }}>
-      {/* <div className='categorie'> */}
-        {/* <img src={img} style={{objectFit: 'cover', objectPosition: 'center' , height: '140px', width: '180px'}} alt='img'></img> */}
-        <div className='categories__name'>{categorie.name}</div>
-      </div >
+      <Link to={categorie.link} style={{ textDecoration: 'none'}}>
+        <div className='categories__carousel' key={categorie.name} style={{ background: `url(${img}) no-repeat`, backgroundSize: 'cover', height: '200px', width: '300px', backgroundPosition: 'center' }}>
+        {/* <div className='categorie'> */}
+          {/* <img src={img} style={{objectFit: 'cover', objectPosition: 'center' , height: '140px', width: '180px'}} alt='img'></img> */}
+          <div className='categories__name'>{categorie.name}</div>
+        </div >
+      </Link>
     )
   });
   
@@ -70,11 +73,13 @@ export default function Categories() {
           categories.map(categorie => {
             const img = categorie.photo
             return (
-              <div key={categorie.name} className='categorie' style={{ background: `url(${img}) no-repeat`, backgroundSize: 'cover', width: '180px', height: '180px', backgroundPosition: 'center' }}>
-              {/* <div className='categorie'> */}
-                {/* <img src={img} style={{objectFit: 'cover', objectPosition: 'center' , height: '140px', width: '180px'}} alt='img'></img> */}
-                <div className='categories__name'>{categorie.name}</div>
-              </div>
+              <Link to={categorie.link} style={{textDecoration: 'none'}}>
+                <div key={categorie.name} className='categorie' style={{ background: `url(${img}) no-repeat`, backgroundSize: 'cover', width: '180px', height: '180px', backgroundPosition: 'center' }}>
+                {/* <div className='categorie'> */}
+                  {/* <img src={img} style={{objectFit: 'cover', objectPosition: 'center' , height: '140px', width: '180px'}} alt='img'></img> */}
+                  <div className='categories__name'>{categorie.name}</div>
+                </div>
+              </Link>
             )
           })
         }
@@ -86,26 +91,32 @@ export default function Categories() {
 const categories = [
   {
     name: 'Phones and Tablets',
-    photo: '../../assets/images/phones_category.jpg'
+    photo: '../../assets/images/phones_category.jpg',
+    link: '/category/phones'
   },
   {
     name: 'PC and Laptops',
-    photo: '../../assets/images/laptops_category.webp'
+    photo: '../../assets/images/laptops_category.webp',
+    link: '/category/pc'
   },
   {
     name: 'Other electronics',
-    photo: '../../assets/images/other-electronics2_category.webp'
+    photo: '../../assets/images/other-electronics2_category.webp',
+    link: '/category/electronics'
   },
   {
     name: 'Instruments',
-    photo: '../../assets/images/instruments_category.jpg'
+    photo: '../../assets/images/instruments_category.jpg',
+    link: '/category/instruments'
   },
   {
     name: 'Clothes',
-    photo: '../../assets/images/clothes_category.webp'
+    photo: '../../assets/images/clothes_category.webp',
+    link: '/category/clothes'
   },
   {
     name: 'Other goods',
-    photo: '../../assets/images/other_category.jpg'
+    photo: '../../assets/images/other_category.jpg',
+    link: '/category/other'
   },
 ]
