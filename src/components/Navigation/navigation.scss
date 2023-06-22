@@ -21,6 +21,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  z-index: 2;
 
   &__toggle {
     width: 100px;
@@ -67,7 +68,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 3;
   background-color: var(--back_ground);
 
   display: flex;

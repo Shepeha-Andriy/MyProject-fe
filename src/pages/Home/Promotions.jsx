@@ -1,9 +1,13 @@
 import React from 'react'
+import { checkTheme } from '../../components/DarkMode/DarkMode'
 import { Carousel } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.scss'
 
 export default function Promotions() {
+
+  checkTheme()
+
   return (
     <div className='promotions'>
       <Carousel touch>

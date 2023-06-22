@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { checkTheme } from '../../components/DarkMode/DarkMode'
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import './home.scss'
@@ -6,6 +7,8 @@ import './home.scss'
 export default function Categories() {
   const [isP, setIsP] = useState(false)
   // const [direction, setDirection] = useState('ltr');
+
+  checkTheme()
 
   useEffect(() => {
     if (window.innerWidth < 480) {
@@ -39,8 +42,8 @@ export default function Categories() {
   });
   
   const carouselOptions = {
-    autoPlay: true,
-    autoPlayInterval: 3000,
+    // autoPlay: true,
+    // autoPlayInterval: 3000,
     // disableDotsControls: true,
     buttonsInBlock: true,
     disableButtonsControls: true,

@@ -4,4 +4,14 @@
   align-items: center;
   padding: 5px 20px;
   height: 60px;
+  // margin-top: 10px;
+  // box-sizing: border-box;
+
+  background-color: var(--back_ground);
+  color: var(--color);
+
+  &__logo {
+    display: flex;
+    align-self: baseline;
+  }
 }

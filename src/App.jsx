@@ -8,6 +8,8 @@ import Signin from './pages/Auth/Signin';
 import Signup from './pages/Auth/Signup';
 import { useSelector } from 'react-redux';
 import Header from './components/Header/Header';
+import Phones from './pages/Categories/Phones/Phones';
+import Footer from './components/Footer/Footer';
 
 // gapi.load("client:auth2", () => {
 //   gapi.client.init({
@@ -20,11 +22,11 @@ function App() {
   const { user } = useSelector(state => state.user)
   const { pathname } = useLocation()
 
-  const shouldHideHeader = ['/signup', '/signin'].includes(pathname);
+  const shouldHideHeaderAndFooter = ['/signup', '/signin'].includes(pathname);
 
   return (
     <div>
-      {!shouldHideHeader && <Header></Header>}
+      {!shouldHideHeaderAndFooter && <Header></Header>}
 
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
@@ -36,9 +38,17 @@ function App() {
             </>
           )
         }
+        <Route path='/category/phones' element={<Phones></Phones>}></Route>
+        <Route path='/category/pc' element={<Phones></Phones>}></Route>
+        <Route path='/category/electronics' element={<Phones></Phones>}></Route>
+        <Route path='/category/clothes' element={<Phones></Phones>}></Route>
+        <Route path='/category/instruments' element={<Phones></Phones>}></Route>
+        <Route path='/category/other' element={<Phones></Phones>}></Route>
         <Route path='*' element={<Home></Home>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>
+
+      {!shouldHideHeaderAndFooter && <Footer></Footer>}
     </div>
   );
 }

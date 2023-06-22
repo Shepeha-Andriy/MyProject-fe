@@ -1,5 +1,6 @@
 :root {
   --back_ground: white;
+  --color: black;
   --green_c: green;
   --dropdown_nav: #f1f1f1;
   --input_c: black;
@@ -10,7 +11,7 @@
 
 [data-theme="dark"] {
   --back_ground: #181a1b;
-  color: #e8e6e3;
+  --color: #e8e6e3;
   --green_c: #72ff72;
   --dropdown_nav: #202324;
   --input_c: white;

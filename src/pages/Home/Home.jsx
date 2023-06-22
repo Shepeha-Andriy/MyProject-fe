@@ -10,7 +10,7 @@ export default function Home() {
   checkTheme()
 
   return (
-    <div>
+    <div className='home'>
       {t('sign_in')}
       <Categories></Categories>
       <Promotions></Promotions>
