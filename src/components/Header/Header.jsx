@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className='header'>
       <div>
-        <FaHome size={'30px'} style={{cursor: 'pointer'}}></FaHome>
+        <FaHome size={'30px'} style={{cursor: 'pointer', marginLeft: '35px'}}></FaHome>
       </div>
 
       <Navigation></Navigation>

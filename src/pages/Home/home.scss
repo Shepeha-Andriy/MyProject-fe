@@ -2,7 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 1240px;
   gap: 25px;
+
+  @media (max-width: 1279px) {
+    width: 640px;
+  }
+
+  @media (max-width: 679px) {
+    width: 420px;
+    }
 
   .categorie {
     transition: 0.3s;
@@ -14,10 +25,22 @@
 
   &__name {
     position: relative;
-
     top: 80%;
     margin-left: 20px;
     font-size: 18px;
     color:black;
+  }
+
+  &__carousel {
+    height: 200px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  
+    &__wraper {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
