@@ -54,7 +54,7 @@ export default function Categories() {
 
   if (isP) {
     return (
-      <div className='categories__carousel__wraper' >
+      <div className='categories__carousel__wraper'>
         <AliceCarousel items={items} mouseTracking controlsStrategy="alternate" { ...carouselOptions }></AliceCarousel>
       </div>
     )
