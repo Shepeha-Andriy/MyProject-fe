@@ -17,4 +17,20 @@ body {
   background-color: var(--back_ground);
   color: var(--color);
   padding: 15px;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+
+  }
+
+  &__main {
+    flex: 1;
+  }
+
+  &__footer {
+    
+  }
 }

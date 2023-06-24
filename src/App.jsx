@@ -8,9 +8,9 @@ import Signin from './pages/Auth/Signin';
 import Signup from './pages/Auth/Signup';
 import { useSelector } from 'react-redux';
 import Header from './components/Header/Header';
-import Phones from './pages/Categories/Phones/Phones';
 import Footer from './components/Footer/Footer';
 import Cart from './pages/Cart/Cart';
+import Category from './pages/Category/Category';
 
 // gapi.load("client:auth2", () => {
 //   gapi.client.init({
@@ -27,31 +27,33 @@ function App() {
 
   return (
     <div className='app'>
-      {!shouldHideHeaderAndFooter && <Header></Header>}
+      {!shouldHideHeaderAndFooter && <header className='app__header'><Header></Header></header>}
 
-      <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-        {
-          !user && (
-            <>
-              <Route path='/signin' element={<Signin></Signin>}></Route>
-              <Route path='/signup' element={<Signup></Signup>}></Route>
-            </>
-          )
-        }
-        <Route path='/category/phones' element={<Phones></Phones>}></Route>
-        <Route path='/category/pc' element={<Phones></Phones>}></Route>
-        <Route path='/category/electronics' element={<Phones></Phones>}></Route>
-        <Route path='/category/clothes' element={<Phones></Phones>}></Route>
-        <Route path='/category/instruments' element={<Phones></Phones>}></Route>
-        <Route path='/category/other' element={<Phones></Phones>}></Route>
+      <main className='app__main'>
+        <Routes>
+          <Route path='/' element={<Home></Home>}></Route>
+          {
+            !user && (
+              <>
+                <Route path='/signin' element={<Signin></Signin>}></Route>
+                <Route path='/signup' element={<Signup></Signup>}></Route>
+              </>
+            )
+          }
+          <Route path='/category/phone' element={<Category></Category>}></Route>
+          <Route path='/category/pc' element={<Category></Category>}></Route>
+          <Route path='/category/electronic' element={<Category></Category>}></Route>
+          <Route path='/category/clothes' element={<Category></Category>}></Route>
+          <Route path='/category/instrument' element={<Category></Category>}></Route>
+          <Route path='/category/other' element={<Category></Category>}></Route>
 
-        <Route path='/cart' element={<Cart></Cart>}></Route>
-        <Route path='*' element={<Home></Home>}></Route>
-      </Routes>
+          <Route path='/cart' element={<Cart></Cart>}></Route>
+          <Route path='*' element={<Home></Home>}></Route>
+        </Routes>
+      </main>
       <ToastContainer></ToastContainer>
 
-      {!shouldHideHeaderAndFooter && <Footer></Footer>}
+      {!shouldHideHeaderAndFooter && <footer className='app__footer'><Footer></Footer></footer>}
     </div>
   );
 }

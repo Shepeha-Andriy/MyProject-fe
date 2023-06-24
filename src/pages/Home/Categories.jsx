@@ -34,8 +34,8 @@ export default function Categories() {
   const items = categories.map((categorie) => {
     const img = categorie.photo
     return (
-      <Link to={categorie.link} style={{ textDecoration: 'none'}}>
-        <div className='categories__carousel' key={categorie.name} style={{ background: `url(${img}) no-repeat`, backgroundSize: 'cover', height: '200px', width: '300px', backgroundPosition: 'center' }}>
+      <Link key={categorie.name} to={categorie.link} style={{ textDecoration: 'none'}}>
+        <div className='categories__carousel' style={{ background: `url(${img}) no-repeat`, backgroundSize: 'cover', height: '200px', width: '300px', backgroundPosition: 'center' }}>
         {/* <div className='categorie'> */}
           {/* <img src={img} style={{objectFit: 'cover', objectPosition: 'center' , height: '140px', width: '180px'}} alt='img'></img> */}
           <div className='categories__name'>{categorie.name}</div>
@@ -73,8 +73,8 @@ export default function Categories() {
           categories.map(categorie => {
             const img = categorie.photo
             return (
-              <Link to={categorie.link} style={{textDecoration: 'none'}}>
-                <div key={categorie.name} className='categorie' style={{ background: `url(${img}) no-repeat`, backgroundSize: 'cover', width: '180px', height: '180px', backgroundPosition: 'center' }}>
+              <Link key={categorie.name} to={categorie.link} style={{textDecoration: 'none'}}>
+                <div className='categorie' style={{ background: `url(${img}) no-repeat`, backgroundSize: 'cover', width: '180px', height: '180px', backgroundPosition: 'center' }}>
                 {/* <div className='categorie'> */}
                   {/* <img src={img} style={{objectFit: 'cover', objectPosition: 'center' , height: '140px', width: '180px'}} alt='img'></img> */}
                   <div className='categories__name'>{categorie.name}</div>
@@ -92,7 +92,7 @@ const categories = [
   {
     name: 'Phones and Tablets',
     photo: '../../assets/images/phones_category.jpg',
-    link: '/category/phones'
+    link: '/category/phone'
   },
   {
     name: 'PC and Laptops',
@@ -102,12 +102,12 @@ const categories = [
   {
     name: 'Other electronics',
     photo: '../../assets/images/other-electronics2_category.webp',
-    link: '/category/electronics'
+    link: '/category/electronic'
   },
   {
     name: 'Instruments',
     photo: '../../assets/images/instruments_category.jpg',
-    link: '/category/instruments'
+    link: '/category/instrument'
   },
   {
     name: 'Clothes',
