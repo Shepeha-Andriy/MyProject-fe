@@ -4,6 +4,7 @@ import api from '../api'
 const initialState = {
   goods: { goods: [], page: 1, length: null, pages: 1 },
   totalLength: null,
+  cart: { amount: 0, cost: 0 },
   message: null,
   isLoading: false
 }
@@ -21,6 +22,17 @@ export const getAllGoods = createAsyncThunk('good/all', async ( params = {}, { r
     }
 
     return res.data
+  } catch (error) {
+    console.log('get all goods slice err', error)
+    return rejectWithValue(error.response.data)
+  }
+})
+
+export const getCartGoods = createAsyncThunk('good/cart', async (params = {}, { rejectWithValue }) => {
+  try {
+    const { data } = await api.get(`/good/cart?page=${params.page}&userId=${params.userId}`)
+
+    return data
   } catch (error) {
     console.log('get all goods slice err', error)
     return rejectWithValue(error.response.data)
@@ -53,6 +65,29 @@ const goodSlice = createSlice({
     )
     .addMatcher(
       (action) => action.type === getAllGoods.rejected.type,
+      (state, action) => {
+        state.isLoading = false
+        state.message = action.payload.err
+      }
+    )
+      //get cart goods
+    .addMatcher(
+      (action) => action.type === getCartGoods.pending.type,
+      (state) => {
+        state.isLoading = true
+      }
+    )
+    .addMatcher(
+      (action) => action.type === getCartGoods.fulfilled.type,
+      (state, action) => {
+        state.goods.goods = action.payload.data.goods
+        state.cart.amount = action.payload.data.amount
+        state.cart.cost = action.payload.data.cost
+        state.isLoading = false
+      }
+    )
+    .addMatcher(
+      (action) => action.type === getCartGoods.rejected.type,
       (state, action) => {
         state.isLoading = false
         state.message = action.payload.err
