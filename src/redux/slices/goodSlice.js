@@ -4,7 +4,6 @@ import api from '../api'
 const initialState = {
   goods: { goods: [], page: 1, length: null, pages: 1 },
   totalLength: null,
-  cart: { amount: 0, cost: 0 },
   message: null,
   isLoading: false
 }
@@ -28,16 +27,17 @@ export const getAllGoods = createAsyncThunk('good/all', async ( params = {}, { r
   }
 })
 
-export const getCartGoods = createAsyncThunk('good/cart', async (params = {}, { rejectWithValue }) => {
+export const getCart = createAsyncThunk('good/cart', async (params = {}, { rejectWithValue }) => {
   try {
     const { data } = await api.get(`/good/cart?page=${params.page}&userId=${params.userId}`)
 
     return data
   } catch (error) {
-    console.log('get all goods slice err', error)
+    console.log('get cart slice err', error)
     return rejectWithValue(error.response.data)
   }
 })
+
 
 const goodSlice = createSlice({
   name: 'good',
@@ -70,24 +70,23 @@ const goodSlice = createSlice({
         state.message = action.payload.err
       }
     )
-      //get cart goods
+       //get cart
     .addMatcher(
-      (action) => action.type === getCartGoods.pending.type,
+      (action) => action.type === getCart.pending.type,
       (state) => {
         state.isLoading = true
       }
     )
     .addMatcher(
-      (action) => action.type === getCartGoods.fulfilled.type,
+      (action) => action.type === getCart.fulfilled.type,
       (state, action) => {
         state.goods.goods = action.payload.data.goods
-        state.cart.amount = action.payload.data.amount
-        state.cart.cost = action.payload.data.cost
+        state.goods.page = action.payload.data.page
         state.isLoading = false
       }
     )
     .addMatcher(
-      (action) => action.type === getCartGoods.rejected.type,
+      (action) => action.type === getCart.rejected.type,
       (state, action) => {
         state.isLoading = false
         state.message = action.payload.err
@@ -95,7 +94,5 @@ const goodSlice = createSlice({
     )
   }
 })
-
-// export const { logout } = userSlice.actions
 
 export default goodSlice.reducer

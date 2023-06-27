@@ -12,22 +12,23 @@ export default function Category() {
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(8)
   const [sort, setSort] = useState('price')
+  const { user } = useSelector(state => state.user)
   const { goods, isLoading } = useSelector(state => state.good)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getAllGoods({ type, page, perPage }))
-  }, [dispatch, type, sort, page, perPage])
+  }, [dispatch, type, sort, page, perPage, user])
 
   if (isLoading) {
     return <Loader></Loader>
   }
-
+console.log(goods)
   return (
     <div className='category'>
       <div className='category__wraper'>
         {
-          goods.goods.map(good => (
+          goods?.goods?.map(good => (
             <div key={good._id} className='category__wraper--item'><GoodCard good={good}></GoodCard></div>
           ))
         }
