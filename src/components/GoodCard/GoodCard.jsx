@@ -19,11 +19,11 @@ export default function GoodCard({ good }) {
   }, [user, good, isAdded]);
 
   const handleAddToCart = async () => {
-    dispatch(addToCart({ userId: user?._id, productId: good._id, price: good.price }))
+    dispatch(addToCart({ productId: good._id, price: good.price }))
   }
 
   const handleRemoveFromCart = async () => {
-    dispatch(removeFromCart({ userId: user?._id, productId: good._id, price: good.price }))
+    dispatch(removeFromCart({ productId: good._id, price: good.price }))
   }
 
   return (

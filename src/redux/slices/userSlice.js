@@ -41,9 +41,9 @@ export const userGoogleAuth = createAsyncThunk('/auth/google', async ({ username
   }
 })
 
-export const addToCart = createAsyncThunk('good/addToCart', async ({ userId, productId, price }, { rejectWithValue }) => {
+export const addToCart = createAsyncThunk('good/addToCart', async ({ productId, price }, { rejectWithValue }) => {
   try {
-    const { data } = await api.post(`/good/addTocart`, { userId, productId, price })
+    const { data } = await api.post(`/good/addTocart`, { productId, price })
 
     return data
   } catch (error) {
@@ -52,9 +52,9 @@ export const addToCart = createAsyncThunk('good/addToCart', async ({ userId, pro
   }
 })
 
-export const removeFromCart = createAsyncThunk('good/removeFromCart', async ({ userId, productId, price }, { rejectWithValue }) => {
+export const removeFromCart = createAsyncThunk('good/removeFromCart', async ({ productId, price }, { rejectWithValue }) => {
   try {
-    const { data } = await api.post(`/good/removeFromCart`, { userId, productId, price })
+    const { data } = await api.post(`/good/removeFromCart`, { productId, price })
     console.log('data',data)
     return data
   } catch (error) {
@@ -63,9 +63,9 @@ export const removeFromCart = createAsyncThunk('good/removeFromCart', async ({ u
   }
 })
 
-export const increaseCart = createAsyncThunk('good/increaseCart', async ({ userId, productId, price }, { rejectWithValue }) => {
+export const increaseCart = createAsyncThunk('good/increaseCart', async ({ productId, price }, { rejectWithValue }) => {
   try {
-    const { data } = await api.post(`/good/increaseCart`, { userId, productId, price })
+    const { data } = await api.post(`/good/increaseCart`, { productId, price })
 
     return data
   } catch (error) {
@@ -74,9 +74,9 @@ export const increaseCart = createAsyncThunk('good/increaseCart', async ({ userI
   }
 })
 
-export const decreaseCart = createAsyncThunk('good/decreaseCart', async ({ userId, productId, price }, { rejectWithValue }) => {
+export const decreaseCart = createAsyncThunk('good/decreaseCart', async ({ productId, price }, { rejectWithValue }) => {
   try {
-    const { data } = await api.post(`/good/decreaseCart`, { userId, productId, price })
+    const { data } = await api.post(`/good/decreaseCart`, { productId, price })
 
     return data
   } catch (error) {

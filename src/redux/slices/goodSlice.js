@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import api from '../api'
 
 const initialState = {
-  goods: { goods: [], page: 1, length: null, pages: 1 },
+  goods: { goods: null, page: 1, length: null, pages: 1 },
+  cart: { goods: null, page: 1, pages: 1 },
   totalLength: null,
   message: null,
   isLoading: false
@@ -29,7 +30,7 @@ export const getAllGoods = createAsyncThunk('good/all', async ( params = {}, { r
 
 export const getCart = createAsyncThunk('good/cart', async (params = {}, { rejectWithValue }) => {
   try {
-    const { data } = await api.get(`/good/cart?page=${params.page}&userId=${params.userId}`)
+    const { data } = await api.get(`/good/cart?page=${params.page}`)
 
     return data
   } catch (error) {
@@ -80,9 +81,9 @@ const goodSlice = createSlice({
     .addMatcher(
       (action) => action.type === getCart.fulfilled.type,
       (state, action) => {
-        state.goods.goods = action.payload.data.goods
-        state.goods.page = action.payload.data.page
-        state.goods.pages = action.payload.data.pages
+        state.cart.goods = action.payload.data.goods
+        state.cart.page = action.payload.data.page
+        state.cart.pages = action.payload.data.pages
         state.isLoading = false
       }
     )

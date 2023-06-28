@@ -10,11 +10,11 @@ export default function CartItem({ good }) {
   const dispatch = useDispatch()
 
   const handleIncrease = async () => {
-    dispatch(increaseCart({ userId: user?._id, productId: good._id, price: good.price }))
+    dispatch(increaseCart({ productId: good._id, price: good.price }))
   }
 
   const handleDecrease = async () => {
-    dispatch(decreaseCart({ userId: user?._id, productId: good._id, price: good.price }))
+    dispatch(decreaseCart({ productId: good._id, price: good.price }))
   }
   
   return (
