@@ -1,4 +1,22 @@
 .cart {
   background-color: var(--back_ground);
   color: var(--color);
+
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  flex-basis: 0;
+  justify-content: center;
+
+  &__wraper {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1160px;
+
+    &--item {}
+  }
 }

@@ -82,6 +82,7 @@ const goodSlice = createSlice({
       (state, action) => {
         state.goods.goods = action.payload.data.goods
         state.goods.page = action.payload.data.page
+        state.goods.pages = action.payload.data.pages
         state.isLoading = false
       }
     )

@@ -23,7 +23,7 @@ export default function Category() {
   if (isLoading) {
     return <Loader></Loader>
   }
-console.log(goods)
+
   return (
     <div className='category'>
       <div className='category__wraper'>

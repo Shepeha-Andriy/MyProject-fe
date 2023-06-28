@@ -30,10 +30,6 @@ export default function Pagination({ currentPage, totalPages, setPage }) {
     pagination.push(totalPagesT);
   }
 
-  function handlePageClick(page) {
-    console.log('Clicked page:', page);
-  }
-
   return (
     <ul className="pagination">
       {currentPageT > 1 && (
