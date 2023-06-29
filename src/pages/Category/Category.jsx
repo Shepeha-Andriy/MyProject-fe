@@ -18,7 +18,7 @@ export default function Category() {
 
   useEffect(() => {
     dispatch(getAllGoods({ type, page, perPage }))
-  }, [dispatch, type, sort, page, perPage, user])
+  }, [dispatch, type, sort, page, perPage])
 
   if (isLoading) {
     return <Loader></Loader>

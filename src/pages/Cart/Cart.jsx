@@ -20,13 +20,13 @@ export default function Cart() {
     if (user) {
       loadCart()
     }
-  }, [loadCart, user])
+  }, [loadCart])
 
   if (!user) {
     return <h3>Sign In to add goods to cart</h3>
   }
 
-  if (isLoading && !cart.goods) {
+  if (isLoading) {
     return <Loader></Loader>
   }
 
