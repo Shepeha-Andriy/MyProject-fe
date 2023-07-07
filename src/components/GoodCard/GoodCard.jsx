@@ -4,19 +4,20 @@ import { RiShoppingCart2Line, RiShoppingCart2Fill } from 'react-icons/ri'
 import './goodcard.scss'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, removeFromCart } from '../../redux/slices/userSlice'
+import { addToCart, removeFromCart } from '../../redux/slices/cartSlice'
 
 export default function GoodCard({ good }) {
   const [isAdded, setIsAdded] = useState(false)
   const { user } = useSelector(state => state.user)
+  const { items } = useSelector(state => state.cart)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (user?.cart) {
-      const goods = Object.keys(user?.cart);
+    if (user) {
+      const goods = Object.keys(items);
       setIsAdded(goods.some(x => x === good._id))
     }
-  }, [user, good, isAdded]);
+  }, [user, good, isAdded, items]);
 
   const handleAddToCart = async () => {
     dispatch(addToCart({ productId: good._id, price: good.price }))

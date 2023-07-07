@@ -6,6 +6,7 @@ import { getAllGoods } from '../../redux/slices/goodSlice';
 import { Loader } from '../../components/Loader/Loader'
 import { useLocation } from 'react-router-dom';
 import Pagination from '../../components/Pagination/Pagination';
+import { getCart } from '../../redux/slices/cartSlice';
 
 export default function Category() {
   const type = useLocation().pathname.split('/')[2]
@@ -18,6 +19,10 @@ export default function Category() {
 
   useEffect(() => {
     dispatch(getAllGoods({ type, page, perPage }))
+    
+    if (user) {
+      dispatch(getCart({ userId: user?._id }))
+    }
   }, [dispatch, type, sort, page, perPage])
 
   if (isLoading) {
