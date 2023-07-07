@@ -3,10 +3,10 @@ import './cartitem.scss'
 import { Link } from 'react-router-dom'
 import { MdArrowForwardIos, MdArrowBackIosNew  } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux';
-import { decreaseCart, increaseCart } from '../../redux/slices/userSlice';
+import { decreaseCart, increaseCart } from '../../redux/slices/cartSlice';
 
 export default function CartItem({ good }) {
-  const { user } = useSelector(state => state.user)
+  const { items } = useSelector(state => state.cart)
   const dispatch = useDispatch()
 
   const handleIncrease = async () => {
@@ -32,12 +32,12 @@ export default function CartItem({ good }) {
       <div>
         <div className='cartitem__quantity'>
         <MdArrowBackIosNew onClick={handleDecrease}></MdArrowBackIosNew>
-        { user.cart[good._id] }
+        { items[good._id] }
         <MdArrowForwardIos onClick={handleIncrease}></MdArrowForwardIos>
         </div>
         
         <div className='cartitem__price'>
-          { user.cart[good._id]  * good.price}
+          { items[good._id]  * good.price}
         </div>
       </div>
 
