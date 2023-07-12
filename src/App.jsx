@@ -11,6 +11,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Cart from './pages/Cart/Cart';
 import Category from './pages/Category/Category';
+import PrivateRoute from './components/PrivateRoute/PrivateRout';
 
 // gapi.load("client:auth2", () => {
 //   gapi.client.init({
@@ -47,7 +48,7 @@ function App() {
           <Route path='/category/instrument' element={<Category></Category>}></Route>
           <Route path='/category/other' element={<Category></Category>}></Route>
 
-          <Route path='/cart' element={<Cart></Cart>}></Route>
+          <Route path='/cart' element={<PrivateRoute><Cart></Cart></PrivateRoute>}></Route>
           <Route path='*' element={<Home></Home>}></Route>
         </Routes>
       </main>
