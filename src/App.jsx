@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Cart from './pages/Cart/Cart';
+import Order from './pages/Order/Order';
 import Category from './pages/Category/Category';
 import PrivateRoute from './components/PrivateRoute/PrivateRout';
 
@@ -49,6 +50,7 @@ function App() {
           <Route path='/category/other' element={<Category></Category>}></Route>
 
           <Route path='/cart' element={<PrivateRoute><Cart></Cart></PrivateRoute>}></Route>
+          <Route path='/order' element={<PrivateRoute><Order></Order></PrivateRoute>}></Route>
           <Route path='*' element={<Home></Home>}></Route>
         </Routes>
       </main>

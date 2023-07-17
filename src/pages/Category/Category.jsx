@@ -38,17 +38,13 @@ export default function Category() {
           ))
         }
       </div>
-
-      {
-        goods.pages > 1
-          ? (
-            <div className='category__pagination'>
-              <div className='pagination'>
-                <Pagination currentPage={page} totalPages={goods.pages} setPage={setPage}></Pagination>
-              </div>
-            </div>
-          ) : ('')
-      }
+      
+      <div className='category__pagination'>
+        <div className='pagination'>
+          <Pagination currentPage={page} totalPages={goods.pages} setPage={setPage}></Pagination>
+        </div>
+      </div>
+       
     </div>
   )
 }

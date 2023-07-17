@@ -10,6 +10,10 @@ export default function Pagination({ currentPage, totalPages, setPage }) {
   const range = [];
   const pagination = [];
 
+  if (totalPagesT < 2) {
+    return ''
+  }
+
   if (currentPageT > totalPagesT) {
     currentPageT = 1
   }

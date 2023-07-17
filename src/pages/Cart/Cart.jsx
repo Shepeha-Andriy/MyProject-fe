@@ -5,6 +5,7 @@ import { getCartGoods } from '../../redux/slices/cartSlice';
 import CartItem from '../../components/CartItem/CartItem';
 import { Loader } from '../../components/Loader/Loader'
 import Pagination from '../../components/Pagination/Pagination';
+import { NavLink } from 'react-router-dom';
 
 export default function Cart() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -56,18 +57,18 @@ export default function Cart() {
             </div>
           </div>
 
-          {
-            pages > 1
-              ? (
-                <div className='cart__pagination'>
-                  <div className='pagination'>
-                    <Pagination currentPage={currentPage} totalPages={pages} setPage={setCurrentPage}></Pagination>
-                  </div>
-                </div>
-              ) : ('')
-          }
+          <div className='cart__pagination'>
+            <div className='pagination'>
+              <Pagination currentPage={currentPage} totalPages={pages} setPage={setCurrentPage}></Pagination>
+            </div>
+          </div>     
+          
         </div>
       }
+
+      <div>
+        <NavLink to={'/order'}>by</NavLink>  
+      </div>
     </div>
   )
 }
