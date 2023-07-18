@@ -1,7 +1,7 @@
 import api from '../../redux/api';
 import { PayPalButtons } from '@paypal/react-paypal-js'
 
-export const PayB = ({ product }) => {
+export const PayButton = ({ product }) => {
   
   const createOrder = async (data, actions) => {
     
@@ -40,7 +40,7 @@ export const PayB = ({ product }) => {
       createOrder={(data, actions) => createOrder(product, actions)}
       onApprove={(data, actions) => onApprove(data, actions)}
       onError={() => { console.log('err') }}
-      onCancel={() => { console.log('cancel')}}
+      onCancel={() => { console.log('cancel') }}
     />
   );  
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 import './order.scss'
-import { PayB } from './PayPal'
+import { PayButton } from './PayPal'
+import Selector from './Location'
+
 
 export default function Order() {
   const product = {
@@ -10,8 +12,10 @@ export default function Order() {
 
   return (
     <div className='order'>
+      <Selector></Selector>
+
       Order 
-      <PayB product={product}></PayB>
+      <PayButton product={product}></PayButton>
     </div>
   )
 }
