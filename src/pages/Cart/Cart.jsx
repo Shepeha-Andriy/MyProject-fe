@@ -7,6 +7,8 @@ import { Loader } from '../../components/Loader/Loader'
 import Pagination from '../../components/Pagination/Pagination';
 import { NavLink } from 'react-router-dom';
 
+import LoadImg from '../../components/LoadImg/LoadImg';
+
 export default function Cart() {
   const [currentPage, setCurrentPage] = useState(1)
   const { user } = useSelector(state => state.user)
@@ -69,6 +71,9 @@ export default function Cart() {
       <div>
         <NavLink to={'/order'}>by</NavLink>  
       </div>
+
+      {/* <LoadImg></LoadImg> */}
+
     </div>
   )
 }
