@@ -1,43 +1,29 @@
-import api from '../../redux/api';
 import { PayPalButtons } from '@paypal/react-paypal-js'
+import { createOrder, captureOrder } from '../../redux/slices/orderSlice'
+import { useDispatch } from 'react-redux';
 
 export const PayButton = ({ product }) => {
+  const dispatch = useDispatch()
   
-  const createOrder = async (data, actions) => {
+  //
+  const handleCreateOrder = async (data, actions) => {
+    const { description, price } = data;
     
-    try {
-      const response = await api.post('/order/create', {
-      product: {
-        description: data.description,
-        price: data.price
-      }}
-      )
-      
-      return response.data.data.id
-    } catch (error) {
-      console.log('ree')
-    }
+    const res = await dispatch(createOrder({ description, price }))
+
+    return res.payload.data.id
   };
 
   const onApprove = async (data, actions) => {
-   console.log(data)
-    try {
-      const response = await api.post('/order/capture', {
-          orderID: data.orderID
-        } 
-      )
-      
-      console.log(response)
-      return response.data
-    } catch (error) {
-      console.log('ree')
-    }
+    const { orderID } = data;
+    
+    dispatch(captureOrder({ orderID }))
   };
 
   return (
     <PayPalButtons
       style={{ color: 'silver', layout: 'horizontal', height: 48, tagline: false, shape: 'pill' }}
-      createOrder={(data, actions) => createOrder(product, actions)}
+      createOrder={(data, actions) => handleCreateOrder(product, actions)}
       onApprove={(data, actions) => onApprove(data, actions)}
       onError={() => { console.log('err') }}
       onCancel={() => { console.log('cancel') }}

@@ -27,17 +27,6 @@ export const getAllGoods = createAsyncThunk('good/all', async ( params = {}, { r
   }
 })
 
-// export const getCart = createAsyncThunk('good/cart', async (params = {}, { rejectWithValue }) => {
-//   try {
-//     const { data } = await api.get(`/good/cart?page=${params.page}`)
-
-//     return data
-//   } catch (error) {
-//     console.log('get cart slice err', error)
-//     return rejectWithValue(error.response.data)
-//   }
-// })
-
 const goodSlice = createSlice({
   name: 'good',
   initialState,
@@ -69,29 +58,6 @@ const goodSlice = createSlice({
         state.message = action.payload.err
       }
     )
-       //get cart
-    // .addMatcher(
-    //   (action) => action.type === getCart.pending.type,
-    //   (state) => {
-    //     state.isLoading = true
-    //   }
-    // )
-    // .addMatcher(
-    //   (action) => action.type === getCart.fulfilled.type,
-    //   (state, action) => {
-    //     state.cart.goods = action.payload.data.goods
-    //     state.cart.page = action.payload.data.page
-    //     state.cart.pages = action.payload.data.pages
-    //     state.isLoading = false
-    //   }
-    // )
-    // .addMatcher(
-    //   (action) => action.type === getCart.rejected.type,
-    //   (state, action) => {
-    //     state.isLoading = false
-    //     state.message = action.payload.err
-    //   }
-    // )
   }
 })
 
