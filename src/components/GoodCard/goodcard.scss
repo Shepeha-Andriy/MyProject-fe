@@ -70,3 +70,51 @@
     align-self: center;
   }
 }
+
+
+.animations {
+  margin-top: 20px;
+}
+
+$rotate-height: 300px;
+
+.rotateImg2 {
+  display: flex;
+  height: $rotate-height;
+  justify-content: center;
+
+  &__container2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__c2 {
+    position: absolute;
+    max-width: 250px;
+    max-height: 300px;
+    width: 250px;
+    height: $rotate-height;
+    cursor: pointer;
+    will-change: transform, opacity;
+  }
+
+  &__front2 {
+    position: absolute;
+    margin-bottom: 300px;
+    // background-size: cover;
+    // background-color: brown;
+  }
+
+  &__back2 {
+    position: absolute;
+    margin-top: 300px;
+    // background-size: cover;
+    // background-color: chartreuse;
+  }
+}
+
+.test {
+  height: 300px;
+  width: 250px;
+  background-color: aqua;
+}
