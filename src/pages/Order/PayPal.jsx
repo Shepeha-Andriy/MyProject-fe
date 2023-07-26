@@ -16,6 +16,7 @@ export const PayButton = ({ product }) => {
 
   const onApprove = async (data, actions) => {
     const { orderID } = data;
+    console.log(data)
     
     dispatch(captureOrder({ orderID }))
   };

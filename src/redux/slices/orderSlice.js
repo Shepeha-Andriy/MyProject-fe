@@ -38,6 +38,32 @@ export const captureOrder = createAsyncThunk('order/capture', async ({ orderID }
   }
 })
 
+export const faildeOrder = createAsyncThunk('order/failded', async ({ orderID }, { rejectWithValue }) => {
+  try {
+    const { data } = await api.post('/order/failded', {
+        orderID
+      })
+
+    return data
+  } catch (error) {
+    console.log('fail order slice err', error)
+    return rejectWithValue(error.response.data)
+  }
+})
+
+export const cancelOrder = createAsyncThunk('order/cancel', async ({ orderID }, { rejectWithValue }) => {
+  try {
+    const { data } = await api.post('/order/cancel', {
+        orderID
+      })
+
+    return data
+  } catch (error) {
+    console.log('cancel order slice err', error)
+    return rejectWithValue(error.response.data)
+  }
+})
+
 const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -66,6 +92,48 @@ const orderSlice = createSlice({
       }
     )
       //capture
+    .addMatcher(
+      (action) => action.type === captureOrder.pending.type,
+      (state) => {
+        state.isLoading = true
+      }
+    )
+    .addMatcher(
+      (action) => action.type === captureOrder.fulfilled.type,
+      (state, action) => {
+        
+        state.isLoading = false
+      }
+    )
+    .addMatcher(
+      (action) => action.type === captureOrder.rejected.type,
+      (state, action) => {
+        state.isLoading = false
+        state.message = action.payload.err
+      }
+    )
+      //fail
+    .addMatcher(
+      (action) => action.type === captureOrder.pending.type,
+      (state) => {
+        state.isLoading = true
+      }
+    )
+    .addMatcher(
+      (action) => action.type === captureOrder.fulfilled.type,
+      (state, action) => {
+        
+        state.isLoading = false
+      }
+    )
+    .addMatcher(
+      (action) => action.type === captureOrder.rejected.type,
+      (state, action) => {
+        state.isLoading = false
+        state.message = action.payload.err
+      }
+    )
+      //cancel
     .addMatcher(
       (action) => action.type === captureOrder.pending.type,
       (state) => {
