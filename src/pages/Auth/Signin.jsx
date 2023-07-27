@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 import { GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
@@ -34,8 +34,7 @@ export default function Signin() {
   const handleSignIn = async (data) => {
     try {
       const { email, password } = data
-      const res = await dispatch(userSignIn({ email, password }))
-      toast.error(message)
+      const res = await dispatch(userSignIn({ email, password }))//Baneblade2004k
 
       if (res?.payload?.data?.token) {
         reset()
@@ -45,6 +44,15 @@ export default function Signin() {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    console.log('mess',message)
+    if (message) {
+      message.type === 'error'
+      ? toast.error(message.mess)
+      : toast.success(message.mess)
+    }
+  }, [message])
 
   checkTheme()
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify';
@@ -21,7 +21,6 @@ export default function Signup() {
     try {
       const { firstname, lastname, email, password, confirmpassword } = data
       const res = await dispatch(userSignUp({ firstname, lastname, email, password, confirmpassword }))
-      toast.error(message)
       
       if (res?.payload?.data?.token) {
         reset()
@@ -32,6 +31,12 @@ export default function Signup() {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    message.type === 'error'
+      ? toast.error(message.mess)
+      : toast.success(message.mess)
+  }, [message])
 
   const validatePassword = (value) => {
     const confirmPassword = getValues('password');

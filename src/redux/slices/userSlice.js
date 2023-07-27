@@ -4,7 +4,7 @@ import api from '../api'
 const initialState = {
   user: JSON.parse(localStorage.getItem('profile'))?.user || null,
   token: JSON.parse(localStorage.getItem('profile'))?.token || null,
-  message: null,
+  message: { type: null, mess: null },
   isLoading: false
 }
 
@@ -22,11 +22,11 @@ export const userSignUp = createAsyncThunk('/auth/signup', async ({ firstname, l
 export const userSignIn = createAsyncThunk('/auth/signin', async ({ email, password }, { rejectWithValue }) => {
   try {
     const { data } = await api.post('/auth/signin', { email, password })
-    console.log('data', data)
+    // console.log('data', data)
     return data
   } catch (error) {
-    console.log('sign in slice err', error)
-    return rejectWithValue(error.response.data)
+    // console.log('sign in slice err', error)
+    return rejectWithValue(error.response.data.err)
   }
 })
 
@@ -103,7 +103,7 @@ const userSlice = createSlice({
       (action) => action.type === userSignUp.pending.type,
       (state) => {
         state.isLoading = true
-        state.message = null
+        state.message = { }
       }
     )
     .addMatcher(
@@ -119,7 +119,8 @@ const userSlice = createSlice({
       (action) => action.type === userSignUp.rejected.type,
       (state, action) => {
         state.isLoading = false
-        state.message = action.payload.err
+        state.message.type = 'error'
+        state.message.mess = action.payload.err
       }
     )
   //sign in
@@ -127,7 +128,7 @@ const userSlice = createSlice({
       (action) => action.type === userSignIn.pending.type,
       (state) => {
         state.isLoading = true
-        state.message = null
+        state.message = { }
       }
     )
     .addMatcher(
@@ -143,7 +144,8 @@ const userSlice = createSlice({
       (action) => action.type === userSignIn.rejected.type,
       (state, action) => {
         state.isLoading = false
-        state.message = action.payload.err
+        state.message.type = 'error'
+        state.message.mess = action.payload
       }
     )
   //google auth
@@ -151,7 +153,7 @@ const userSlice = createSlice({
       (action) => action.type === userGoogleAuth.pending.type,
       (state) => {
         state.isLoading = true
-        state.message = null
+        state.message = { }
       }
     )
     .addMatcher(
@@ -167,7 +169,8 @@ const userSlice = createSlice({
       (action) => action.type === userGoogleAuth.rejected.type,
       (state, action) => {
         state.isLoading = false
-        state.message = action.payload.err
+        state.message.type = 'error'
+        state.message.mess = action.payload.err
       }
     )
       //add to cart
