@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import api from '../api'
 
 const initialState = {
+  notifications: [],
   message: null,
   isLoading: false
 }
@@ -9,8 +10,8 @@ const initialState = {
 export const getMyNotifications = createAsyncThunk('notification/getMy', async ( params = { }, { rejectWithValue } ) => {
   try {
 
-    const { data } = api.get('/notification/getMy')
-
+    const { data } = await api.get('/notification/getMy')
+    
     return data
   } catch (error) {
     console.log('get my notifications slice err', error)
@@ -21,7 +22,7 @@ export const getMyNotifications = createAsyncThunk('notification/getMy', async (
 export const createNotifications = createAsyncThunk('notification/create', async ( params = { }, { rejectWithValue } ) => {
   try {
 
-    const { data } = api.post('/notification/create', params)
+    const { data } = await api.post('/notification/create', params)
 
     return data
   } catch (error) {
@@ -70,7 +71,7 @@ const notificationSlice = createSlice({
     .addMatcher(
       (action) => action.type === getMyNotifications.fulfilled.type,
       (state, action) => {
-
+        state.notifications = action.payload.data
         state.isLoading = false
       }
     )

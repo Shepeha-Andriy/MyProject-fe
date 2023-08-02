@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
 import { HiOutlineMenu } from "react-icons/hi";
 import DropDown from './DropDown';
+import Notification from './Notification';
 import Menu from './Menu';
 
 export default function Navigation() {
@@ -47,6 +48,7 @@ export default function Navigation() {
           ?
             (<ul className='navigation__list'>
               <li className='navigation__item'></li>
+              <li className='navigation__item'><Notification></Notification></li>
               <li className='navigation__item'><FaShoppingCart size={'30px'} onClick={() => navigate('/cart')} style={{cursor: 'pointer'}}></FaShoppingCart></li>
               <li className='navigation__item'><DropDown></DropDown></li>
             </ul>)
