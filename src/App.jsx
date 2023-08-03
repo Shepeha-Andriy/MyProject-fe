@@ -13,6 +13,8 @@ import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Category from './pages/Category/Category';
 import PrivateRoute from './components/PrivateRoute/PrivateRout';
+import { initSocket } from './utils/io';
+import { useEffect } from 'react';
 
 // gapi.load("client:auth2", () => {
 //   gapi.client.init({
@@ -24,6 +26,10 @@ import PrivateRoute from './components/PrivateRoute/PrivateRout';
 function App() {
   const { user } = useSelector(state => state.user)
   const { pathname } = useLocation()
+
+  useEffect(() => {
+    initSocket()
+  }, [user]);
 
   const shouldHideHeaderAndFooter = ['/signup', '/signin'].includes(pathname);
 
