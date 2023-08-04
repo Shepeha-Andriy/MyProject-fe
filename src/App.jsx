@@ -13,7 +13,7 @@ import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Category from './pages/Category/Category';
 import PrivateRoute from './components/PrivateRoute/PrivateRout';
-import { initSocket } from './utils/io';
+import { initSocket, socket } from './utils/io';
 import { useEffect } from 'react';
 
 // gapi.load("client:auth2", () => {

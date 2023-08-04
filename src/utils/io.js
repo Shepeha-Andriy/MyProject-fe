@@ -17,6 +17,4 @@ export const initSocket = async () => {
   }
 
   socket.emit('add-user', decodedToken.id)
-
-  console.log(decodedToken)
 }
