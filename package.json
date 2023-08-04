@@ -31,6 +31,7 @@
     "react-spring": "^9.7.2",
     "react-toastify": "^9.1.3",
     "sass": "^1.63.4",
+    "socket.io-client": "^4.7.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

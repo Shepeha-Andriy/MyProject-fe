@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { MdNotificationsNone } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import './navigation.scss'
-import { getMyNotifications } from '../../redux/slices/notificationSlice';
+import { getMyNotifications, newMessage } from '../../redux/slices/notificationSlice';
+import { socket } from '../../utils/io';
 
 export default function Notification() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,11 @@ export default function Notification() {
   
   useEffect(() => {
     dispatch(getMyNotifications())
-  }, [])
+
+    socket.on('message', data => {
+      dispatch(newMessage(data))
+    })
+  }, [socket])
 
   const handleMouseEnter = () => {
     setIsOpen(true);
@@ -31,8 +36,8 @@ export default function Notification() {
         isOpen && (
           <ul className='notification__list'>
             {
-              notifications.map(n => (
-                <li className='notification__item'>{ n.enMessage }</li>
+              notifications.map((n, i) => (
+                <li key={i} className='notification__item'>{ n.enMessage }</li>
               ))
             }
 
