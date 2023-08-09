@@ -41,8 +41,8 @@ export default function Notification() {
               ))
             }
 
-            <li className='notification__item'>Message 1 sgsdgfdgfdgfdgfdgfdgf</li>
-            <li className='notification__item'>Message 2</li>
+            {/* <li className='notification__item'>Message 1 sgsdgfdgfdgfdgfdgfdgf</li>
+            <li className='notification__item'>Message 2</li> */}
           </ul>
         ) 
       }
