@@ -8,12 +8,14 @@ const initialState = {
   isLoading: false
 }
 
-export const createOrder = createAsyncThunk('order/create', async ( { description, price}, { rejectWithValue } ) => {
+export const createOrder = createAsyncThunk('order/create', async ( { description, price, items, amount }, { rejectWithValue } ) => {
   try {
     const { data } = await api.post('/order/create', {
         product: {
           description,
-          price
+          price,
+          items,
+          amount
         }
       }
     )

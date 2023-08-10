@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { checkTheme } from '../../components/DarkMode/DarkMode'
 import Categories from './Categories';
 import Promotions from './Promotions';
-import Animations from '../../components/Animations/Animations';
+// import Animations from '../../components/Animations/Animations';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -15,7 +15,7 @@ export default function Home() {
       <Categories></Categories>
       <Promotions></Promotions>
 
-      <Animations></Animations>
+      {/* <Animations></Animations> */}
     </div>
   )
 }

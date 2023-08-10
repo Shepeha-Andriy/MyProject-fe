@@ -9,7 +9,7 @@ import DropDown from './DropDown';
 import Notification from './Notification';
 import Menu from './Menu';
 
-export default function Navigation() {
+function Navigation() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isP, setIsP] = useState(false)
   const { t } = useTranslation();
@@ -49,7 +49,7 @@ export default function Navigation() {
             (<ul className='navigation__list'>
               <li className='navigation__item'></li>
               <li className='navigation__item'><Notification></Notification></li>
-              <li className='navigation__item'><FaShoppingCart size={'30px'} onClick={() => navigate('/cart')} style={{cursor: 'pointer'}}></FaShoppingCart></li>
+              { user && <li className='navigation__item'><FaShoppingCart size={'30px'} onClick={() => navigate('/cart')} style={{cursor: 'pointer'}}></FaShoppingCart></li> }
               <li className='navigation__item'><DropDown></DropDown></li>
             </ul>)
           : <div className='menu__open' onClick={() => setIsOpenMenu(true)}><HiOutlineMenu size={'30px'}></HiOutlineMenu></div>
@@ -57,3 +57,5 @@ export default function Navigation() {
     </div>
   )
 }
+
+export default React.memo(Navigation)

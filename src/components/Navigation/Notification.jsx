@@ -6,7 +6,7 @@ import './navigation.scss'
 import { getMyNotifications, newMessage } from '../../redux/slices/notificationSlice';
 import { socket } from '../../utils/io';
 
-export default function Notification() {
+function Notification() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useSelector(state => state.user)
   const { notifications } = useSelector(state => state.notification)
@@ -17,6 +17,7 @@ export default function Notification() {
     dispatch(getMyNotifications())
 
     socket.on('message', data => {
+      console.log(data)
       dispatch(newMessage(data))
     })
   }, [socket])
@@ -31,21 +32,22 @@ export default function Notification() {
 
   return (
     <div className="notification" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-    <div className="notification__toggle"><MdNotificationsNone size={'30px'}></MdNotificationsNone> </div>
+    { user && <div className="notification__toggle"><MdNotificationsNone size={'30px'}></MdNotificationsNone> </div> }
       {
         isOpen && (
           <ul className='notification__list'>
             {
-              notifications.map((n, i) => (
-                <li key={i} className='notification__item'>{ n.enMessage }</li>
-              ))
+              notifications.length > 0
+                ? (notifications.map((n, i) => (
+                  <li key={i} className='notification__item'>{ n.enMessage }</li>
+                )))
+                : <span style={{ textAlign: 'center' }}>It's empty here</span>
             }
-
-            {/* <li className='notification__item'>Message 1 sgsdgfdgfdgfdgfdgfdgf</li>
-            <li className='notification__item'>Message 2</li> */}
           </ul>
         ) 
       }
     </div>
   )
 }
+
+export default React.memo(Notification)

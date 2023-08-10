@@ -30,6 +30,17 @@ export const userSignIn = createAsyncThunk('/auth/signin', async ({ email, passw
   }
 })
 
+// export const userRefresh = createAsyncThunk('/auth/refresh', async (data = { }, { rejectWithValue }) => {
+//   try {
+//     const { data } = await api.post('/auth/signin')
+//     // console.log('data', data)
+//     return data
+//   } catch (error) {
+//     // console.log('sign in slice err', error)
+//     return rejectWithValue(error.response.data.err)
+//   }
+// })
+
 export const userGoogleAuth = createAsyncThunk('/auth/google', async ({ username, email, googleId, token }, { rejectWithValue }) => {
   try {
     const { data } = await api.post('/auth/google', { username, email, googleId, token })

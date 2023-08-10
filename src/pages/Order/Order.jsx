@@ -3,12 +3,17 @@ import './order.scss'
 import { PayButton } from './PayPal'
 import Selector from './Location'
 import DownloadOrderInfo from './DownloadOrderInfo'
+import { useSelector } from 'react-redux'
 
 
 export default function Order() {
-  const product = {
-    description: 'test',
-    price: 1
+  const { items, amount, cost } = useSelector(state => state.cart)
+
+  const order = {
+    items,
+    price: cost,
+    amount,
+    description: 'test'
   }
 
   return (
@@ -16,7 +21,7 @@ export default function Order() {
       <Selector></Selector>/
 
       Order 
-      <PayButton product={product}></PayButton>
+      <PayButton order={order}></PayButton>
       <DownloadOrderInfo></DownloadOrderInfo>
     </div>
   )
